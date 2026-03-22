@@ -16,8 +16,39 @@
     <p id = "dateToday"></p>
     <p id = "timeNow"></p>
 
+    <h2>Add Student</h2>
+    <form id = "studentForms">
+        <label for = "name" >Name: </label>
+        <input type = "text" id = "name" placeholder = "Enter Your Name" required>
 
-    
+        <label for = "age" >Age: </label>
+        <input type="text" id = "age" placeholder = "Enter Your Age" required>
+
+        <label for = "email"  >Email: </label>
+        <input type="text" id = "email" placeholder = "Enter Your Email" required>
+
+        <label for = "course" >Course: </label>
+        <select name="course" id="course" required>
+            <option value="" disabled hidden> Select an option </option>
+            <option value="BA Food Appreciation">BA Food Appreciation</option>
+            <option value="BA Applied Poetry of the Future">BA Applied Poetry of the Future</option>
+            <option value="BS Computer Repair Shop">BS Computer Repair Shop</option>
+            <option value="BS Video Gaming">BS Video Gaming</option>
+            <option value="BS Installing and Downloading">BS Installing and Downloading</option>
+        </select>
+
+
+        <button id ="submit_button">Submit</button>
+
+    </form>
+
+
+    <input type="text" id="studentIdInput" placeholder="Enter Student ID">
+    <button onclick="find_student()">Search Student</button>
+    <p id="studentResult"></p>
+
+    <button onclick="display_list()">Display all</button>
+    <p id ="displayAll">Display</p>
 
 
     <script src = "lab5_scripts.js"></script>
