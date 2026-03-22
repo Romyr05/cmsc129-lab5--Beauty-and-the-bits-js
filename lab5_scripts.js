@@ -1,4 +1,12 @@
 //Object
+const validCourses = [
+    "BA Food Appreciation",
+    "BA Applied Poetry of the Future",
+    "BS Computer Repair Shop",
+    "BS Video Gaming",
+    "BS Installing and Downloading"
+];
+
 class Student {
 
     constructor(studentName,age,email,course){
@@ -19,7 +27,6 @@ class Student {
             additionalNumbers.add(digit)
         }
         
-        console.log(additionalNumbers)
         return('2024' + [...additionalNumbers].join(""))
     }
 
@@ -43,7 +50,7 @@ class Student {
 
 
     isValidName(){
-        const regexPattern = /^[A-Za-z]+ [A-Za-z]+$/     //Regex Pattern from a to Z with one space can allow -
+        const regexPattern = /^[A-Za-z]+(?: [A-Za-z]+)?$/     //Regex Pattern from a to Z with one space can allow -
         return regexPattern.test(this.studentName) && this.studentName.length >= 5;
     }
 
@@ -59,15 +66,7 @@ class Student {
         return false
     }
     
-    isValidCourse(Course){
-        const validCourses = [
-        "BA Food Appreciation",
-        "BA Applied Poetry of the Future",
-        "BS Computer Repair Shop",
-        "BS Video Gaming",
-        "BS Installing and Downloading"
-        ];
-
+    isValidCourse(){
         return validCourses.includes(this.course)
     }
 
@@ -96,11 +95,10 @@ function time_now(){
     }
 
     
-    DateToday = today.toLocaleDateString("en-US",DateOptions)
-    DayToday = today.toLocaleDateString("en-US",DayOptions)
-    timeNow = today.toLocaleString("en-US",timeNowOptions)
+    const DateToday = today.toLocaleDateString("en-US",DateOptions)
+    const DayToday = today.toLocaleDateString("en-US",DayOptions)
+    const timeNow = today.toLocaleString("en-US",timeNowOptions)
 
-    console.log(timeNow)
     
 
 
@@ -112,21 +110,54 @@ function time_now(){
 }
 
 //Here put all students 
-Students = []
+const Students = []
 
 
 
-//just checking if it works using node
-try {
-    const student3 = new Student(
-        "Juan Cruz",
-        20,
-        "juan@up.edu.ph",
-        "BS Video Gaming"
-    );
-    console.log(student3);
-} catch (error) {
-    console.log(error.message);
+function addStudents(event){
+    event.preventDefault();
+
+    const studentName = document.getElementById("name").value
+    const studentAge = document.getElementById("age").value
+    const studentEmail = document.getElementById("email").value
+    const studentCourse = document.getElementById("course").value
+
+
+    const student = new Student(studentName,studentAge,studentEmail,studentCourse)
+
+    Students.push(student)
+    console.log(student.studentNumber)
+
 }
 
 
+function find_student(){
+
+    const studentIDInput = document.getElementById("studentIdInput").value.trim()
+    const studentResult = document.getElementById("studentResult")
+
+
+    const foundStudent = Students.find(student => student.studentNumber === studentIDInput)
+
+    
+    if(!foundStudent){
+        studentResult.textContent = "Student record does not exist"
+        return
+    }
+
+    studentResult.textContent = `${foundStudent.studentNumber},${foundStudent.studentName},${foundStudent.age},${foundStudent.email},${foundStudent.course}`
+
+}
+
+
+function display_list(){
+    let displayAll = document.getElementById("displayAll")
+
+
+    Students.map((student,index) =>{
+        displayAll.textContent += `Student${index + 1}:   ${student.studentNumber},${student.studentName},${student.age},${student.email},${student.course}`
+    }).join("<br>");
+}
+
+
+document.getElementById("studentForms").addEventListener("submit",addStudents)
