@@ -3,57 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel = "stylesheet" href ="lab5.css">
-
+    <title>Student Directory</title>
+    <link rel="stylesheet" href="lab5.css">
 </head>
-
-
 <body>
-    
-    <button id ="date" onclick="time_now()">Show Current Date</button>
+    <main class="page-shell">
+        <section class="hero-panel">
+            <p class="eyebrow">CMSC 126 Lab 5</p>
+            <h1>Student Directory Manager</h1>
+            <p class="intro">
+                Add student records, search by student ID, and review saved entries in a cleaner workspace.
+            </p>
 
-    <p id = "dateToday"></p>
-    <p id = "timeNow"></p>
+            <button id="date" type="button" onclick="time_now()">Show Current Date</button>
 
-    <h2>Add Student</h2>
-    <form id = "studentForms">
-        <label for = "name" >Name: </label>
-        <input type = "text" id = "name" placeholder = "Enter Your Name" required>
+            <div class="date-display" aria-live="polite">
+                <p id="dateToday"></p>
+                <p id="timeNow"></p>
+            </div>
+        </section>
 
-        <label for = "age" >Age: </label>
-        <input type="text" id = "age" placeholder = "Enter Your Age" required>
+        <section class="content-grid">
+            <article class="card">
+                <div class="section-heading">
+                    <p class="section-label">Form</p>
+                    <h2>Add Student</h2>
+                </div>
 
-        <label for = "email"  >Email: </label>
-        <input type="text" id = "email" placeholder = "Enter Your Email" required>
+                <form id="studentForms">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
 
-        <label for = "course" >Course: </label>
-        <select name="course" id="course" required>
-            <option value="" disabled hidden> Select an option </option>
-            <option value="BA Food Appreciation">BA Food Appreciation</option>
-            <option value="BA Applied Poetry of the Future">BA Applied Poetry of the Future</option>
-            <option value="BS Computer Repair Shop">BS Computer Repair Shop</option>
-            <option value="BS Video Gaming">BS Video Gaming</option>
-            <option value="BS Installing and Downloading">BS Installing and Downloading</option>
-        </select>
+                    <label for="age">Age</label>
+                    <input type="number" id="age" placeholder="Enter your age" min="19" max="98" required>
 
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your UP email" required>
 
-        <button id ="submit_button">Submit</button>
+                    <label for="course">Course</label>
+                    <select name="course" id="course" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="BA Food Appreciation">BA Food Appreciation</option>
+                        <option value="BA Applied Poetry of the Future">BA Applied Poetry of the Future</option>
+                        <option value="BS Computer Repair Shop">BS Computer Repair Shop</option>
+                        <option value="BS Video Gaming">BS Video Gaming</option>
+                        <option value="BS Installing and Downloading">BS Installing and Downloading</option>
+                    </select>
 
-    </form>
+                    <button id="submit_button" type="submit">Submit</button>
+                </form>
+            </article>
 
+            <article class="card">
+                <div class="section-heading">
+                    <p class="section-label">Search</p>
+                    <h2>Find Student</h2>
+                </div>
 
-    <input type="text" id="studentIdInput" placeholder="Enter Student ID">
-    <button onclick="find_student()">Search Student</button>
-    <p id="studentResult"></p>
+                <div class="action-group">
+                    <input type="text" id="studentIdInput" placeholder="Enter student ID">
+                    <button type="button" onclick="find_student()">Search Student</button>
+                </div>
 
-    <button onclick="display_list()">Display all</button>
-    <p id ="displayAll">Display</p>
+                <p id="studentResult">Search results will appear here.</p>
+            </article>
 
+            <article class="card full-width">
+                <div class="section-heading">
+                    <p class="section-label">Records</p>
+                    <h2>Student List</h2>
+                </div>
 
-    <script src = "lab5_scripts.js"></script>
+                <button type="button" onclick="display_list()">Display All</button>
+                <div id="displayAll">Student records will appear here.</div>
+            </article>
+        </section>
+    </main>
+
+    <script src="lab5_scripts.js"></script>
 </body>
-
-
-
 </html>

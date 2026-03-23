@@ -151,12 +151,23 @@ function find_student(){
 
 
 function display_list(){
-    let displayAll = document.getElementById("displayAll")
+    const displayAll = document.getElementById("displayAll")
 
+    if (Students.length === 0) {
+        displayAll.innerHTML = `<p class="empty-message">No student records available yet.</p>`
+        return
+    }
 
-    Students.map((student,index) =>{
-        displayAll.textContent += `Student${index + 1}:   ${student.studentNumber},${student.studentName},${student.age},${student.email},${student.course}`
-    }).join("<br>");
+    displayAll.innerHTML = Students.map((student, index) => `
+        <div class="student-card">
+            <h3>Student ${index + 1}</h3>
+            <p><span>ID:</span> ${student.studentNumber}</p>
+            <p><span>Name:</span> ${student.studentName}</p>
+            <p><span>Age:</span> ${student.age}</p>
+            <p><span>Email:</span> ${student.email}</p>
+            <p><span>Course:</span> ${student.course}</p>
+        </div>
+    `).join("")
 }
 
 
