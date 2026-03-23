@@ -1,0 +1,118 @@
+* {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    color: #0b6588;
+}
+body {
+    background-color: #f0f8ff;
+    margin: 20px;
+    display: grid;
+    place-items: center;
+}
+
+button {
+    background-color: #f0e9f1;
+    color: rgb(25, 22, 206);
+    border: 2px solid #092088;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 100px;
+}
+
+button:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+    text-decoration: underline;
+}
+
+#date {
+    margin-top: 15px;
+    font-size: 18px; 
+}
+
+#dateToday {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#timeNow {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+form {
+    max-width: 600px;
+    align-items: center;
+    margin: 30px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+/* Input Fields */
+input[type="text"], select {
+    width: 100%;           
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 15px;
+    background: #f8fafc;
+    transition: border-color 0.5s;
+    box-sizing: border-box;  
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+}
+
+#submit_button {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+}
+
+#studentIdInput {
+    width: 320px;
+    padding: 14px 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 50px;
+    font-size: 15px;
+    background: white;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+#studentResult {
+    background: white;
+    padding: 15px 20px;
+    margin: 15px 0;
+    border-left: 4px solid #2196F3;
+    border-radius: 12px;
+    font-size: 15px;
+    color: #2d3748;
+}
+
+
+#displayAll {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-left: 4px solid #2196F3;
+    border-radius: 12px;
+    font-size: 15px;
+    color: #2d3748;
+    max-width: 600px;
+}
