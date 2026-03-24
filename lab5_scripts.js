@@ -20,31 +20,39 @@ class Student {
     }
 
     generateStudentNumber(){
-        const additionalNumbers = new Set();
+        let studentNumber = ""
 
-        while (additionalNumbers.size < 5){
-            let digit = Math.floor(Math.random() * 10)
-            additionalNumbers.add(digit)
+        do {
+            const additionalNumbers = new Set();
+
+            while (additionalNumbers.size < 5){
+                let digit = Math.floor(Math.random() * 10)
+                additionalNumbers.add(digit)
+            }
+            
+            studentNumber = '2024' + [...additionalNumbers].join("")
         }
-        
-        return('2024' + [...additionalNumbers].join(""))
+
+        while (Students.some(student => student.studentNumber === studentNumber))
+
+        return studentNumber
     }
 
 
 
     validateStudent(){
         if(!this.isValidName()){
-            throw new Error("Not valid Name")
+            throw new Error("Please enter a valid name with at least 5 letters. Only one space between names is allowed.")
         }
         if(!this.isValidAge()){
-            throw new Error("Not valid Age")
+            throw new Error("Please enter an age between 19 and 98.")
         }
 
         if(!this.isValidEmail()){
-            throw new Error("Not valid Email")
+            throw new Error("Please use a valid UP email ending in @up.edu.ph.")
         }
         if(!this.isValidCourse()){
-            throw new Error("Not valid course")
+            throw new Error("Please select a valid course from the list.")
         }
     }
 
@@ -112,21 +120,35 @@ function time_now(){
 //Here put all students 
 const Students = []
 
+function showFormMessage(message, type){
+    const formMessage = document.getElementById("formMessage")
+    formMessage.textContent = message
+    formMessage.className = `form-message ${type}`
+}
+
 
 
 function addStudents(event){
     event.preventDefault();
 
-    const studentName = document.getElementById("name").value
-    const studentAge = document.getElementById("age").value
-    const studentEmail = document.getElementById("email").value
+    const form = document.getElementById("studentForms")
+
+    const studentName = document.getElementById("name").value.trim()
+    const studentAge = Number(document.getElementById("age").value)
+    const studentEmail = document.getElementById("email").value.trim()
     const studentCourse = document.getElementById("course").value
 
+    try {
+        const student = new Student(studentName,studentAge,studentEmail,studentCourse)
 
-    const student = new Student(studentName,studentAge,studentEmail,studentCourse)
+        Students.push(student)
+        console.log(student.studentNumber)
 
-    Students.push(student)
-    console.log(student.studentNumber)
+        showFormMessage(`Student added successfully. Student ID: ${student.studentNumber}`, "success")
+        form.reset()
+    } catch (error) {
+        showFormMessage(error.message, "error")
+    }
 
 }
 
